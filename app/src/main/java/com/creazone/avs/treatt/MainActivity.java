@@ -2,6 +2,7 @@ package com.creazone.avs.treatt;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -9,11 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,16 +106,22 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View container, int position, long id) {
-                // Getting the Container Layout of the ListView
-                LinearLayout linearLayoutParent = (LinearLayout) container;
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                //Get the value of the item you clicked
+                String itemClicked = shops[position];
+                intent.putExtra("shops", itemClicked);
+                startActivity(intent);
 
-                // Getting the inner Linear Layout
-                LinearLayout linearLayoutChild = (LinearLayout ) linearLayoutParent.getChildAt(1);
-
-                // Getting the Country TextView
-                TextView tvCountry = (TextView) linearLayoutChild.getChildAt(0);
-
-                Toast.makeText(getBaseContext(), tvCountry.getText().toString(), Toast.LENGTH_SHORT).show();
+//                // Getting the Container Layout of the ListView
+//                LinearLayout linearLayoutParent = (LinearLayout) container;
+//
+//                // Getting the inner Linear Layout
+//                LinearLayout linearLayoutChild = (LinearLayout ) linearLayoutParent.getChildAt(1);
+//
+//                // Getting the Country TextView
+//                TextView tvCountry = (TextView) linearLayoutChild.getChildAt(0);
+//
+//                Toast.makeText(getBaseContext(), tvCountry.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -146,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -153,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+
+
         return super.onOptionsItemSelected(item);
+
     }
 }
