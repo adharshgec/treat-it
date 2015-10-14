@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.items, menu);
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
@@ -158,9 +159,27 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        super.onOptionsItemSelected(item);
 
+        switch(item.getItemId()){
+            case R.id.receivedtreats:
+//                Toast.makeText(getBaseContext(), "You selected Phone", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ReceivedTreats.class);
+                startActivity(intent);
+                break;
 
-        return super.onOptionsItemSelected(item);
+            case R.id.help:
+//                Toast.makeText(getBaseContext(), "You selected Computer", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return true;
 
     }
-}
+
+
+
+
+//        return super.onOptionsItemSelected(item);
+
+    }
